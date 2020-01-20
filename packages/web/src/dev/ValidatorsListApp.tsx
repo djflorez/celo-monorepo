@@ -5,8 +5,8 @@ import gql from 'graphql-tag'
 import getConfig from 'next/config'
 import * as React from 'react'
 import { ApolloProvider, Query } from 'react-apollo'
-import ValidatorsList from 'src/dev/ValidatorsList'
 import ShowApolloError from 'src/dev/ShowApolloError'
+import ValidatorsList from 'src/dev/ValidatorsList'
 import { I18nProps, withNamespaces } from 'src/i18n'
 
 function createApolloClient() {
@@ -17,7 +17,7 @@ function createApolloClient() {
     fetch: async (...args) => {
       const response = await fetch(...args)
       const { data } = await response.json()
-      return new Response(JSON.stringify({ data }))
+      return new (Response as any)(JSON.stringify({ data }))
     },
   })
 }
